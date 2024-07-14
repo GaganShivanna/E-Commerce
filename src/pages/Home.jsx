@@ -4,6 +4,9 @@ import Section from "../components/Section";
 import { products, discoutProducts } from "../utils/products";
 import SliderHome from "../components/Slider";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
+import NavBar from "../components/Navbar/Navbar";
+import FinalNavBar from "../components/CustomStuff/FinalNavbar";
+
 
 const Home = () => {
   const newArrivalData = products.filter(
@@ -12,7 +15,9 @@ const Home = () => {
   const bestSales = products.filter((item) => item.category === "sofa");
   useWindowScrollToTop();
   return (
+    
     <Fragment>
+      <NavBar></NavBar>
       <SliderHome />
       <Wrapper />
       <Section

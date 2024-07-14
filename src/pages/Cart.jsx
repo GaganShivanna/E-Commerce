@@ -1,34 +1,33 @@
-import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Container, Row } from 'react-bootstrap';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+import CheckoutForm from '../components/checkoutfrom';
 import {
   addToCart,
   decreaseQty,
   deleteProduct,
-} from "../app/features/cart/cartSlice";
+} from '../app/features/cart/cartSlice';
+
+const stripePromise = loadStripe('pk_test_51PcPNSBUpOcaZs3u9E2hNhx5yfqdGk6DiGFDTrCMJHnfVVP486zK92lGi7fNgYl8o5XTWsGnZsFTAEpQE3KEsaTK00vWoHMH1B');
 
 const Cart = () => {
   const { cartList } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  // middlware to localStorage
   const totalPrice = cartList.reduce(
     (price, item) => price + item.qty * item.price,
     0
   );
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    // if(CartItem.length ===0) {
-    //   const storedCart = localStorage.getItem("cartItem");
-    //   setCartItem(JSON.parse(storedCart));
-    // }
-  }, []);
+
   return (
     <section className="cart-items">
       <Container>
         <Row className="justify-content-center">
           <Col md={8}>
             {cartList.length === 0 && (
-              <h1 className="no-items product">No Items are add in Cart</h1>
+              <h1 className="no-items product">No Items are added in Cart</h1>
             )}
             {cartList.map((item) => {
               const productQty = item.price * item.qty;
@@ -79,10 +78,13 @@ const Cart = () => {
           <Col md={4}>
             <div className="cart-total">
               <h2>Cart Summary</h2>
-              <div className=" d_flex">
+              <div className="d_flex">
                 <h4>Total Price :</h4>
                 <h3>${totalPrice}.00</h3>
               </div>
+              <Elements stripe={stripePromise}>
+                <CheckoutForm cartList={cartList} />
+              </Elements>
             </div>
           </Col>
         </Row>
