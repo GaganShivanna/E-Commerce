@@ -1,7 +1,4 @@
-# Maltimart Ecommerce
-
-## 📌 Live Demo
-https://multimart-ecommerce.onrender.com
+# GAGKART
 
 ## 😎 Features
 
@@ -28,7 +25,7 @@ From your command line, first clone this repo:
 $ https://github.com/0mar-helal/multimart-react-ecommerce.git
 
 # Go into the repository
-$ cd multimart-react-ecommerce
+$ cd GAGKART
 
 # Remove current origin repository
 $ git remote remove origin
@@ -40,9 +37,13 @@ Then you can install the dependencies using NPM:
 ```
 # Install dependencies
 $ npm install
+$ npm install bootstrap
+$ npm install auth0/auth0-react
+$ npm install react-router-dom
 
 # Start development server
 $ npm start
 ```
 👨‍💻 Happy coding!
 ---
+# -- GG -- 
